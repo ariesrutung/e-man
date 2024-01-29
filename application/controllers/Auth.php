@@ -26,6 +26,10 @@ class Auth extends CI_Controller
 	 */
 	public function index()
 	{
+
+		$this->data['csrf'] = $this->_get_csrf_nonce();
+		$this->data['identity'] = $this->config->item('identity', 'ion_auth');
+
 		if (!$this->ion_auth->logged_in()) {
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
@@ -105,7 +109,11 @@ class Auth extends CI_Controller
 		}
 	}
 
-
+	public function delete_user($id)
+	{
+		$this->ion_auth->delete_user($id);
+		redirect('auth');
+	}
 
 	/**
 	 * Log the user out

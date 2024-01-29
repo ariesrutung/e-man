@@ -1,267 +1,214 @@
-<div class="main-content container-fluid">
-    <div class="page-title">
-        <h3>Dashboard</h3>
-        <p class="text-subtitle text-muted">A good dashboard to display your statistics</p>
-    </div>
-    <section class="section">
-        <div class="row mb-2">
-            <div class="col-12 col-md-3">
-                <div class="card card-statistic">
-                    <div class="card-body p-0">
-                        <div class="d-flex flex-column">
-                            <div class='px-3 py-3 d-flex justify-content-between'>
-                                <h3 class='card-title'>BALANCE</h3>
-                                <div class="card-right d-flex align-items-center">
-                                    <p>$50 </p>
-                                </div>
-                            </div>
-                            <div class="chart-wrapper">
-                                <canvas id="canvas1" style="height:100px !important"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                <div class="card card-statistic">
-                    <div class="card-body p-0">
-                        <div class="d-flex flex-column">
-                            <div class='px-3 py-3 d-flex justify-content-between'>
-                                <h3 class='card-title'>Revenue</h3>
-                                <div class="card-right d-flex align-items-center">
-                                    <p>$532,2 </p>
-                                </div>
-                            </div>
-                            <div class="chart-wrapper">
-                                <canvas id="canvas2" style="height:100px !important"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                <div class="card card-statistic">
-                    <div class="card-body p-0">
-                        <div class="d-flex flex-column">
-                            <div class='px-3 py-3 d-flex justify-content-between'>
-                                <h3 class='card-title'>ORDERS</h3>
-                                <div class="card-right d-flex align-items-center">
-                                    <p>1,544 </p>
-                                </div>
-                            </div>
-                            <div class="chart-wrapper">
-                                <canvas id="canvas3" style="height:100px !important"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                <div class="card card-statistic">
-                    <div class="card-body p-0">
-                        <div class="d-flex flex-column">
-                            <div class='px-3 py-3 d-flex justify-content-between'>
-                                <h3 class='card-title'>Sales Today</h3>
-                                <div class="card-right d-flex align-items-center">
-                                    <p>423 </p>
-                                </div>
-                            </div>
-                            <div class="chart-wrapper">
-                                <canvas id="canvas4" style="height:100px !important"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class='card-heading p-1 pl-3'>Sales</h3>
-                    </div>
-                    <div class="card-body">
+<div class="main_content_iner ">
+    <div class="container-fluid plr_30 body_white_bg pt_30">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="single_element">
+                    <div class="quick_activity">
                         <div class="row">
-                            <div class="col-md-4 col-12">
-                                <div class="pl-3">
-                                    <h1 class='mt-5'>$21,102</h1>
-                                    <p class='text-xs'><span class="text-green"><i data-feather="bar-chart" width="15"></i> +19%</span> than last month</p>
-                                    <div class="legends">
-                                        <div class="legend d-flex flex-row align-items-center">
-                                            <div class='w-3 h-3 rounded-full bg-info me-2'></div><span class='text-xs'>Last Month</span>
-                                        </div>
-                                        <div class="legend d-flex flex-row align-items-center">
-                                            <div class='w-3 h-3 rounded-full bg-blue me-2'></div><span class='text-xs'>Current Month</span>
-                                        </div>
+                            <div class="col-12">
+                                <div class="quick_activity_wrap">
+                                    <div class="single_quick_activity">
+                                        <h4>Total Modal</h4>
+                                        <h3><span class=""><?= format_rupiah($belanja); ?></span> </h3>
+                                        <p>Modal Sepanjang Periode</p>
+                                    </div>
+                                    <div class="single_quick_activity">
+                                        <h4>Total Penjualan</h4>
+                                        <h3><span class=""><?= format_rupiah($penjualan); ?></span> </h3>
+                                        <p>Keuntungan Sepanjang Periode</p>
+                                    </div>
+                                    <div class="single_quick_activity">
+                                        <h4>Kerugian</h4>
+                                        <h3>$ <span class="counter">2,000</span> </h3>
+                                        <p>Kerugian Sepanjang Periode</p>
+                                    </div>
+                                    <div class="single_quick_activity">
+                                        <h4>Net Profit Margin</h4>
+                                        <h3>$ <span class="counter">1,79,000</span> </h3>
+                                        <p>Saved 65%</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-8 col-12">
-                                <canvas id="bar"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="card-title">Orders Today</h4>
-                        <div class="d-flex ">
-                            <i data-feather="download"></i>
-                        </div>
-                    </div>
-                    <div class="card-body px-0 pb-0">
-                        <div class="table-responsive">
-                            <table class='table mb-0' id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>City</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Graiden</td>
-                                        <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                        <td>076 4820 8838</td>
-                                        <td>Offenburg</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dale</td>
-                                        <td>fringilla.euismod.enim@quam.ca</td>
-                                        <td>0500 527693</td>
-                                        <td>New Quay</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nathaniel</td>
-                                        <td>mi.Duis@diam.edu</td>
-                                        <td>(012165) 76278</td>
-                                        <td>Grumo Appula</td>
-                                        <td>
-                                            <span class="badge bg-danger">Inactive</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Darius</td>
-                                        <td>velit@nec.com</td>
-                                        <td>0309 690 7871</td>
-                                        <td>Ways</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ganteng</td>
-                                        <td>velit@nec.com</td>
-                                        <td>0309 690 7871</td>
-                                        <td>Ways</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Oleg</td>
-                                        <td>rhoncus.id@Aliquamauctorvelit.net</td>
-                                        <td>0500 441046</td>
-                                        <td>Rossignol</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kermit</td>
-                                        <td>diam.Sed.diam@anteVivamusnon.org</td>
-                                        <td>(01653) 27844</td>
-                                        <td>Patna</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card ">
-                    <div class="card-header">
-                        <h4>Your Earnings</h4>
+            <div class="col-lg-12 col-xl-6">
+                <div class="white_box mb_30 min_430">
+                    <div class="box_header  box_header_block ">
+                        <div class="main-title">
+                            <h3 class="mb-0">AP and AR Balance</h3>
+                            <span>Avg. $5,309</span>
+                        </div>
+                        <div class="box_select d-flex">
+                            <select class="nice_Select2 mr_5">
+                                <option value="1">Monthly</option>
+                                <option value="1">Monthly</option>
+                            </select>
+                            <select class="nice_Select2 ">
+                                <option value="1">Last Year</option>
+                                <option value="1">this Year</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div id="radialBars"></div>
-                        <div class="text-center mb-5">
-                            <h6>From last month</h6>
-                            <h1 class='text-green'>+$2,134</h1>
+                    <div id="bar_active"></div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 ">
+                <div class="white_box mb_30 min_430">
+                    <div class="box_header  box_header_block">
+                        <div class="main-title">
+                            <h3 class="mb-0">% of Income Budget</h3>
+                        </div>
+                    </div>
+                    <div id="radial_2"></div>
+                    <div class="radial_footer">
+                        <div class="radial_footer_inner d-flex justify-content-between">
+                            <div class="left_footer">
+                                <h5> <span style="background-color: #EDECFE;"></span> Blance</h5>
+                                <p>-$18,570</p>
+                            </div>
+                            <div class="left_footer">
+                                <h5> <span style="background-color: #A4A1FB;"></span> Blance</h5>
+                                <p>$31,430</p>
+                            </div>
+                        </div>
+                        <div class="radial_bottom">
+                            <p><a href="#">View Full Report</a></p>
                         </div>
                     </div>
                 </div>
-                <div class="card widget-todo">
-                    <div class="card-header border-bottom d-flex justify-content-between align-items-center">
-                        <h4 class="card-title d-flex">
-                            <i class='bx bx-check font-medium-5 pl-25 pr-75'></i>Progress
-                        </h4>
-
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="white_box min_430">
+                    <div class="box_header  box_header_block">
+                        <div class="main-title">
+                            <h3 class="mb-0">% of Expenses Budget</h3>
+                        </div>
                     </div>
-                    <div class="card-body px-0 py-1">
-                        <table class='table table-borderless'>
-                            <tr>
-                                <td class='col-3'>UI Design</td>
-                                <td class='col-6'>
-                                    <div class="progress progress-info">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td class='col-3 text-center'>60%</td>
-                            </tr>
-                            <tr>
-                                <td class='col-3'>VueJS</td>
-                                <td class='col-6'>
-                                    <div class="progress progress-success">
-                                        <div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td class='col-3 text-center'>30%</td>
-                            </tr>
-                            <tr>
-                                <td class='col-3'>Laravel</td>
-                                <td class='col-6'>
-                                    <div class="progress progress-danger">
-                                        <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td class='col-3 text-center'>50%</td>
-                            </tr>
-                            <tr>
-                                <td class='col-3'>ReactJS</td>
-                                <td class='col-6'>
-                                    <div class="progress progress-primary">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td class='col-3 text-center'>80%</td>
-                            </tr>
-                            <tr>
-                                <td class='col-3'>Go</td>
-                                <td class='col-6'>
-                                    <div class="progress progress-secondary">
-                                        <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </td>
-                                <td class='col-3 text-center'>65%</td>
-                            </tr>
-                        </table>
+                    <div id="radial_1"></div>
+                    <div class="radial_footer">
+                        <div class="radial_footer_inner d-flex justify-content-between">
+                            <div class="left_footer">
+                                <h5> <span style="background-color: #EDECFE;"></span> Blance</h5>
+                                <p>-$18,570</p>
+                            </div>
+                            <div class="left_footer">
+                                <h5> <span style="background-color: #A4A1FB;"></span> Blance</h5>
+                                <p>$31,430</p>
+                            </div>
+                        </div>
+                        <div class="radial_bottom">
+                            <p><a href="#">View Full Report</a></p>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-6">
+                <div class="white_box mb_30 min_430">
+                    <div class="box_header  box_header_block">
+                        <div class="main-title">
+                            <h3 class="mb-0">EBIT (Earnings Before Interest & Tax)</h3>
+                        </div>
+                    </div>
+                    <canvas height="200" id="visit-sale-chart"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-6">
+                <div class="white_box mb_30 min_430">
+                    <div class="box_header  box_header_block align-items- ">
+                        <div class="main-title">
+                            <h3 class="mb-0">Cost of goods / Services</h3>
+                        </div>
+                        <div class="title_info">
+                            <p>1 Jan 2020 to 31 Dec 2020 <br>
+                                <div class="legend_style text-end">
+                                    <li> <span style="background-color: #A4A1FB;"></span> Services</li>
+                                    <li class="inactive"> <span style="background-color: #A4A1FB;"></span> Avarage
+                                    </li>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                    <canvas height="200" id="visit-sale-chart2"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-3">
+                <div class="white_box mb_30 min_400">
+                    <div class="box_header ">
+                        <div class="main-title">
+                            <h3 class="mb-0">Disputed vs Overdue Invoices</h3>
+                        </div>
+                    </div>
+                    <canvas height="220px" id="doughutChart"></canvas>
+                    <div class="legend_style mt_10px ">
+                        <li class="d-block"> <span style="background-color: #DF67C1;"></span> Disputed Invoices
+                        </li>
+                        <li class="d-block"> <span style="background-color: #6AE0BD;"></span> Avarage</li>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-6">
+                <div class="white_box mb_30 min_400 ">
+                    <div class="box_header  box_header_block">
+                        <div class="main-title">
+                            <h3 class="mb-0">Disputed Invoices</h3>
+                        </div>
+                        <div class="legend_style mt-10">
+                            <li> <span></span> Disputed Invoices</li>
+                            <li class="inactive"> <span></span> Avarage</li>
+                        </div>
+                    </div>
+                    <div class="title_btn">
+                        <ul>
+                            <li><a class="active" href="#">All time</a></li>
+                            <li><a href="#">This year</a></li>
+                            <li><a href="#">This week</a></li>
+                            <li><a href="#">Today</a></li>
+                        </ul>
+                    </div>
+                    <canvas height="120px" id="sales-chart"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-3">
+                <div class="white_box mb_30 min_400">
+                    <div class="box_header  box_header_block">
+                        <div class="main-title">
+                            <h3 class="mb-0">Disputed vs Overdue Invoices</h3>
+                        </div>
+                    </div>
+                    <canvas height="220px" id="doughutChart2"></canvas>
+                    <div class="legend_style legend_style_grid mt_10px">
+                        <li class="d-block"> <span style="background-color: #FF7B36;"></span> 30 Days</li>
+                        <li class="d-block"> <span style="background-color: #E8205E;"></span> 60 Days</li>
+                        <li class="d-block"> <span style="background-color: #3B76EF"></span> 90 Days</li>
+                        <li class="d-block"> <span style="background-color:#00BFBF;"></span> 90+Days</li>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="white_box min_400">
+                    <div class="box_header  box_header_block">
+                        <div class="main-title">
+                            <h3 class="mb-0">EBIT (Earnings Before Interest & Tax)</h3>
+                        </div>
+                        <div class="title_info">
+                            <p>1 Jan 2020 to 31 Dec 2020</p>
+                        </div>
+                    </div>
+                    <div id="area_active"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="white_box mb_30 min_400">
+                    <div class="box_header ">
+                        <div class="main-title">
+                            <h3 class="mb-0">Inventory Turnover</h3>
+                        </div>
+                    </div>
+                    <div id="stackbar_active"></div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>

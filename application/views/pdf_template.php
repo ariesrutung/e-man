@@ -112,7 +112,7 @@
     <hr class="email-line">
 
     <h4>RENCANA ANGGARAN BIAYA (RAB) <br>
-        BELANJA BIBIT AYAM KAMPUNG DAN KEPERLUANNYA <br>
+        BELANJA DOC & PAKAN AYAM KAMPUNG JENIS KUB <br>
         - PERIODE FEBRUARI 2024 - </h4>
     <br>
     <table>

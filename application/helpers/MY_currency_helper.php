@@ -1,6 +1,4 @@
-<!-- application/helpers/MY_currency_helper.php -->
-
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 if (!function_exists('format_rupiah')) {
     function format_rupiah($angka)

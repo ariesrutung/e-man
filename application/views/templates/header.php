@@ -1,153 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Voler Admin Dashboard</title>
 
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/assets/css/bootstrap.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Finance</title>
+    <link rel="icon" href="<?= base_url(); ?>template/img/logo.png" type="image/png">
 
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/assets/vendors/chartjs/Chart.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>template/css/bootstrap1.min.css" />
 
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/assets/css/app.css">
-    <link rel="shortcut icon" href="<?= base_url(); ?>assets/dist/assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/themefy_icon/themify-icons.css" />
 
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/swiper_slider/css/swiper.min.css" />
 
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/assets/vendors/simple-datatables/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/select2/css/select2.min.css" />
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/niceselect/css/nice-select.css" />
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/owl_carousel/css/owl.carousel.css" />
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/gijgo/gijgo.min.css" />
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/font_awesome/css/all.min.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/tagsinput/tagsinput.css" />
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/datatable/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/datatable/css/responsive.dataTables.min.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/datatable/css/buttons.dataTables.min.css" />
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/text_editor/summernote-bs4.css" />
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/morris/morris.css">
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/vendors/material_icon/material-icons.css" />
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/css/metisMenu.css">
+
+    <link rel="stylesheet" href="<?= base_url(); ?>template/css/style1.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>template/css/colors/default.css" id="colorSkinCSS">
 
     <style>
-        .dataTable-top {
-            display: flex;
-            justify-content: space-between;
+        a.active {
+            background-color: #ecf0f6 !important;
+            border-radius: 0 50px 50px 0 !important;
+            font-weight: bold !important;
         }
 
-        .dataTable-dropdown {
-            display: flex;
-            width: 50%;
-            justify-content: flex-start;
-            align-items: center;
+        #group>a {
+            pointer-events: none !important;
         }
 
-        select.dataTable-selector.form-select {
-            width: 20%;
-            margin-right: 10px;
+        #modalDetailInvestasi p {
+            font-size: 14px;
+            color: #828bb2;
         }
 
-        .dataTable-table th a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .table>:not(caption)>*>* {
-            padding: 10px
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        a.sidebar.active {
-            color: #053382 !important;
+        #modalDetailInvestasi td:nth-child(2) {
+            padding: 0.75rem 0;
         }
     </style>
 </head>
 
-<body>
-    <div id="app">
-        <div id="sidebar" class='active'>
-            <div class="sidebar-wrapper active">
-                <div class="sidebar-header d-flex">
-                    <img class="" src="<?= base_url(); ?>assets/logo/icon_new_nppg.png" alt="Logo">
-                </div>
-                <div class="sidebar-menu">
-                    <ul class="menu">
-                        <!-- <li class='sidebar-title'>Main Menu</li> -->
-                        <li class="sidebar-item <?php echo ($this->uri->segment(1) == 'dashboard') ? 'active' : ''; ?>">
-                            <a href="<?= base_url(); ?>dashboard" class='sidebar-link'>
-                                <i data-feather="monitor" width="20"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item <?php echo ($this->uri->segment(1) == 'investor') ? 'active' : ''; ?>">
-                            <a href="<?= base_url('investor'); ?>" class='sidebar-link'>
-                                <i data-feather="users" width="20"></i>
-                                <span>Data Investor</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item <?php echo ($this->uri->segment(1) == 'investasi') ? 'active' : ''; ?>">
-                            <a href="<?= base_url('investasi'); ?>" class='sidebar-link'>
-                                <i data-feather="server" width="20"></i>
-                                <span>Data Investasi</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item <?php echo ($this->uri->segment(1) == 'belanja') ? 'active' : ''; ?>">
-                            <a href="<?= base_url('belanja'); ?>" class='sidebar-link'>
-                                <i data-feather="shopping-bag" width="20"></i>
-                                <span>Data Belanja Produk</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item <?php echo ($this->uri->segment(1) == 'penjualan') ? 'active' : ''; ?>">
-                            <a href="<?= base_url('penjualan'); ?>" class='sidebar-link'>
-                                <i data-feather="bar-chart" width="20"></i>
-                                <span>Data Penjualan</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+<body class="crm_body_bg">
+
+    <nav class="sidebar">
+        <div class="logo d-flex justify-content-between">
+            <a href="<?= base_url(); ?>dashboard"><img class="w-50" src="<?= base_url(); ?>template/img/icon_new_nppg.png" alt></a>
+            <div class="sidebar_close_icon d-lg-none">
+                <i class="ti-close"></i>
             </div>
         </div>
+        <ul id="sidebar_menu">
+            <li>
+                <a class="<?php echo ($this->uri->segment(1) == 'dashboard') ? 'active' : ''; ?>" href="<?= base_url(); ?>dashboard">
+                    <img class="w-75" src="<?= base_url(); ?>template/img/menu-icon/dasbor.svg" alt>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class="<?php echo ($this->uri->segment(1) == 'profil') ? 'active' : ''; ?>" href="<?= base_url(); ?>profil">
+                    <img class="w-75" src="<?= base_url(); ?>template/img/menu-icon/company.svg" alt>
+                    <span>Data Perusahaan</span>
+                </a>
+            </li>
+            <li>
+                <a class="<?php echo ($this->uri->segment(1) == 'investor') ? 'active' : ''; ?>" href="<?= base_url(); ?>investor">
+                    <img class="w-75" src="<?= base_url(); ?>template/img/menu-icon/investor.svg" alt>
+                    <span>Data Investor</span>
+                </a>
+            </li>
+            <li>
+                <a class="<?php echo ($this->uri->segment(1) == 'investasi') ? 'active' : ''; ?>" href="<?= base_url(); ?>investasi">
+                    <img class="w-75" src="<?= base_url(); ?>template/img/menu-icon/invest.svg" alt>
+                    <span>Data Investasi</span>
+                </a>
+            </li>
+            <li>
+                <a class="<?php echo ($this->uri->segment(1) == 'belanja') ? 'active' : ''; ?>" href="<?= base_url(); ?>belanja">
+                    <img class="w-75" src="<?= base_url(); ?>template/img/menu-icon/belanja.svg" alt>
+                    <span>Data Belanja</span>
+                </a>
+            </li>
+            <li>
+                <a class="<?php echo ($this->uri->segment(1) == 'penjualan') ? 'active' : ''; ?>" href="<?= base_url(); ?>penjualan">
+                    <img class="w-75" src="<?= base_url(); ?>template/img/menu-icon/penjualan.svg" alt>
+                    <span>Data Penjualan</span>
+                </a>
+            </li>
+            <li>
+                <a class="<?php echo ($this->uri->segment(1) == 'auth') ? 'active' : ''; ?>" href="<?= base_url(); ?>auth">
+                    <img class="w-75" src="<?= base_url(); ?>template/img/menu-icon/users.svg" alt>
+                    <span>Pengelola Aplikasi</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-        <div id="main">
-            <nav class="navbar navbar-header navbar-expand navbar-light">
-                <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
-                <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
-                        <li class="dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                                <div class="avatar me-1">
-                                    <?php if ($this->session->userdata('photo') == '') : ?>
-                                        <img src="<?php echo base_url(); ?>assets/logo/icon_new_nppg.png" class="user-image" alt="user photo">
-                                    <?php else : ?>
-                                        <img src="<?php echo base_url(); ?>assets/uploads/<?php echo $this->session->userdata('photo'); ?>" class="user-image" alt="user photo">
-                                    <?php endif; ?>
 
-                                </div>
-                                <span class="d-none d-md-block d-lg-inline-block"><?php echo $this->session->userdata('full_name'); ?></span>
-                                <!-- <div class="">Hi, Saugi</div> -->
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="<?php echo base_url(); ?>profil" class="btn btn-default btn-flat"><i data-feather="eye"></i> Profil</a>
-                                <a href="<?php echo base_url(); ?>auth/logout" class="btn btn-default btn-flat"><i data-feather="log-out"></i> Log out</a>
+    <section class="main_content dashboard_part">
+
+        <div class="container-fluid g-0">
+            <div class="row">
+                <div class="col-lg-12 p-0">
+                    <div class="header_iner d-flex justify-content-between align-items-center">
+                        <div class="sidebar_icon d-lg-none">
+                            <i class="ti-menu"></i>
+                        </div>
+                        <div class="serach_field-area">
+                            <div class="search_inner">
+                                <form action="#">
+                                    <div class="search_field">
+                                        <input type="text" placeholder="Search here...">
+                                    </div>
+                                    <button type="submit"> <img src="<?= base_url(); ?>template/img/icon/icon_search.svg" alt> </button>
+                                </form>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-
-            <!-- Modal -->
-            <div class="modal fade" id="profilPerusahaanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="profilPerusahaanModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="profilPerusahaanModalLabel">DATA PERUSAHAAN</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
+                        <div class="header_right d-flex justify-content-between align-items-center">
+                            <div class="header_notification_warp d-flex align-items-center">
+                                <li>
+                                    <a href="<?= base_url(); ?>template/#"> <img src="<?= base_url(); ?>template/img/icon/bell.svg" alt> </a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url(); ?>template/#"> <img src="<?= base_url(); ?>template/img/icon/msg.svg" alt> </a>
+                                </li>
+                            </div>
+                            <div class="profile_info">
+                                <div class="profile_info_iner">
+                                    <p>Welcome Admin!</p>
+                                    <h5>Travor James</h5>
+                                    <div class="profile_info_details">
+                                        <a href="<?= base_url(); ?>template/#">My Profile <i class="ti-user"></i></a>
+                                        <a href="<?= base_url(); ?>template/#">Settings <i class="ti-settings"></i></a>
+                                        <a href="<?= base_url(); ?>template/#">Log Out <i class="ti-shift-left"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
