@@ -8,6 +8,10 @@ class Investor extends CI_Controller
         parent::__construct();
         $this->load->model('Investor_model');
         $this->load->library('form_validation');
+        $this->load->library(['ion_auth', 'form_validation']);
+        if (!$this->ion_auth->logged_in()) {
+            redirect('auth/login', 'refresh');
+        }
     }
 
     public function index()

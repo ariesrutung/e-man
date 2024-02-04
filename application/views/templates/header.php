@@ -133,27 +133,28 @@
                                     <div class="search_field">
                                         <input type="text" placeholder="Search here...">
                                     </div>
-                                    <button type="submit"> <img src="<?= base_url(); ?>template/img/icon/icon_search.svg" alt> </button>
+                                    <button type="submit"> <img src="<?= base_url(); ?>template/img/icon/icon_search.svg"> </button>
                                 </form>
                             </div>
                         </div>
                         <div class="header_right d-flex justify-content-between align-items-center">
                             <div class="header_notification_warp d-flex align-items-center">
                                 <li>
-                                    <a href="<?= base_url(); ?>template/#"> <img src="<?= base_url(); ?>template/img/icon/bell.svg" alt> </a>
+                                    <a href="#"> <img src="<?= base_url(); ?>template/img/icon/bell.svg"> </a>
                                 </li>
                                 <li>
-                                    <a href="<?= base_url(); ?>template/#"> <img src="<?= base_url(); ?>template/img/icon/msg.svg" alt> </a>
+                                    <a href="#"> <img src="<?= base_url(); ?>template/img/icon/msg.svg"> </a>
                                 </li>
                             </div>
                             <div class="profile_info">
+                                <img src="<?= base_url(); ?>template/img/client_img.png">
                                 <div class="profile_info_iner">
-                                    <p>Welcome Admin!</p>
-                                    <h5>Travor James</h5>
+                                    <p>Welcome <?= $this->session->userdata('username'); ?>!</p>
+                                    <h5><?= $this->session->userdata('identity'); ?></h5>
                                     <div class="profile_info_details">
-                                        <a href="<?= base_url(); ?>template/#">My Profile <i class="ti-user"></i></a>
-                                        <a href="<?= base_url(); ?>template/#">Settings <i class="ti-settings"></i></a>
-                                        <a href="<?= base_url(); ?>template/#">Log Out <i class="ti-shift-left"></i></a>
+                                        <!-- <a href="#">My Profile <i class="ti-user"></i></a>
+                                        <a href="#">Settings <i class="ti-settings"></i></a> -->
+                                        <a href="<?= base_url(); ?>auth/logout">Log Out <i class="ti-shift-left"></i></a>
                                     </div>
                                 </div>
                             </div>
