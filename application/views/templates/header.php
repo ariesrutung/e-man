@@ -149,12 +149,12 @@
                             <div class="profile_info">
                                 <img src="<?= base_url(); ?>template/img/client_img.png">
                                 <div class="profile_info_iner">
-                                    <p>Welcome <?= $this->session->userdata('username'); ?>!</p>
+                                    <p>Selamat Datang!</p>
                                     <h5><?= $this->session->userdata('identity'); ?></h5>
                                     <div class="profile_info_details">
                                         <!-- <a href="#">My Profile <i class="ti-user"></i></a>
                                         <a href="#">Settings <i class="ti-settings"></i></a> -->
-                                        <a href="<?= base_url(); ?>auth/logout">Log Out <i class="ti-shift-left"></i></a>
+                                        <a href="<?= base_url(); ?>auth/logout">Keluar <i class="ti-shift-left"></i></a>
                                     </div>
                                 </div>
                             </div>
