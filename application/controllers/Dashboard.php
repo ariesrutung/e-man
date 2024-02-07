@@ -19,6 +19,9 @@ class Dashboard extends CI_Controller
 		$data['belanja'] = $this->Belanja_model->get_total_modal();
 		$data['penjualan'] = $this->Penjualan_model->get_total_penjualan();
 
+		$data['sales_and_purchases'] = $this->Belanja_model->get_sales_and_purchases_data();
+		// $data['sales_and_purchases'] = $this->Penjualan_model->get_sales_and_purchases_data();
+
 		$this->load->view('templates/header');
 		$this->load->view('dashboard/index', $data);
 		$this->load->view('templates/footer');

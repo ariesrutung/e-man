@@ -143,7 +143,7 @@ class Belanja_model extends CI_Model
 
     public function get_total_modal()
     {
-        $this->db->select_sum('jumlah_modal', 'total_modal');
+        $this->db->select_sum('harga_total', 'total_modal');
         $query = $this->db->get('belanja');
 
         return $query->row()->total_modal;
@@ -158,5 +158,47 @@ class Belanja_model extends CI_Model
         $last_inserted_id = $this->db->insert_id();
 
         return $last_inserted_id;
+    }
+
+    // Model untuk Pembelian (Belanja_model.php)
+    public function get_total_pembelian_by_period($period)
+    {
+        $this->db->select_sum('harga_total', 'total_modal');
+        $this->db->where('periode', $period);
+        $query = $this->db->get('belanja');
+
+        return $query->row()->total_modal;
+    }
+
+    public function get_total_penjualan_by_period($period)
+    {
+        $this->db->select_sum('jumlah_modal', 'total_modal');
+        $this->db->where('periode', $period);
+        $query = $this->db->get('penjualan');
+
+        return $query->row()->total_modal;
+    }
+
+    public function get_sales_and_purchases_data()
+    {
+        $this->db->select('periode');
+        $this->db->from('penjualan');
+        $penjualan = $this->db->get()->result_array();
+
+        $this->db->select('periode');
+        $this->db->from('belanja');
+        $pembelian = $this->db->get()->result_array();
+
+        // Gabungkan periode dari penjualan dan pembelian
+        $periodes = array_merge($penjualan, $pembelian);
+
+        // Buat array asosiatif untuk menyimpan total penjualan dan pembelian berdasarkan periode
+        $data = array();
+        foreach ($periodes as $periode) {
+            $data[$periode['periode']]['total_penjualan'] = $this->get_total_penjualan_by_period($periode['periode']);
+            $data[$periode['periode']]['total_pembelian'] = $this->get_total_pembelian_by_period($periode['periode']);
+        }
+
+        return $data;
     }
 }

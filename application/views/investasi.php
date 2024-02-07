@@ -221,96 +221,117 @@
     </div>
 </div>
 
-<?php foreach ($investasi as $row) : ?>
-    <div class="modal fade" id="modalDetailInvestasi<?= $row->id; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDetailInvestasi<?= $row->id; ?>Label" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+<?php if (empty($investasi)) : ?>
+    <!-- Modal jika tabel kosong -->
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalDetailInvestasi<?= $row->id; ?>Label">Detail hasil investasi <br> <?= $row->investor; ?> periode <?= $row->periode; ?></h5>
+                    <h5 class="modal-title">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <td class="mt-4">Periode</td>
-                                <td>:</td>
-                                <td><?= $row->periode; ?></td>
-                            </tr>
-                            <tr>
-                                <td class="mt-4">Nama Investor</td>
-                                <td>:</td>
-                                <td><?= $row->investor; ?></td>
-                            </tr>
-                            <tr>
-                                <td class="mt-4">Modal</td>
-                                <td>:</td>
-                                <td><?= $row->jumlah_modal; ?></td>
-                            </tr>
-                            <tr>
-                                <td class="mt-4">Tujuan</td>
-                                <td>:</td>
-                                <td><?= $row->tujuan; ?></td>
-                            </tr>
-                            <tr>
-                                <td class="mt-4">Tanggal Investasi</td>
-                                <td>:</td>
-                                <td><?= $row->tgl_investasi; ?></td>
-                            </tr>
-                            <tr>
-                                <td class="mt-4">Tanggal Rencana Mulai Pekerjaan</td>
-                                <td>:</td>
-                                <td><?= $row->tgl_mulai; ?></td>
-                            </tr>
-                            <tr>
-                                <td class="mt-4">Tanggal Estimasi Selesai Pekerjaan</td>
-                                <td>:</td>
-                                <td><?= $row->tgl_akhir; ?></td>
-                            </tr>
-                            <tr>
-                                <td class="mt-4">Status</td>
-                                <td>:</td>
-                                <td><?php
-                                        $status_text = '';
-                                        switch ($row->status) {
-                                            case 1:
-                                                $status_text = 'Sedang Berjalan';
-                                                $badge_class = 'badge bg-primary';
-                                                break;
-                                            case 2:
-                                                $status_text = 'Sudah Selesai';
-                                                $badge_class = 'badge bg-secondary';
-                                                break;
-                                            case 3:
-                                                $status_text = 'Akan Berjalan';
-                                                $badge_class = 'badge bg-success';
-                                                break;
-                                            case 4:
-                                                $status_text = 'Rencana';
-                                                $badge_class = 'badge bg-danger';
-                                                break;
-                                            default:
-                                                $status_text = 'Tidak Diketahui'; // Ganti dengan teks default jika nilai status tidak sesuai dengan yang diharapkan
-                                                $badge_class = 'badge bg-secondary';
-                                                break;
-                                        }
-                                        ?>
-                                        <span class="<?= $badge_class; ?>">
-                                            <?= $status_text; ?>
-                                        </span>
-                                        </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <p>Modal body text goes here.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-<?php endforeach; ?>
+<?php else : ?>
+    <?php foreach ($investasi as $row) : ?>
+        <div class="modal fade" id="modalDetailInvestasi<?= $row->id; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDetailInvestasi<?= $row->id; ?>Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDetailInvestasi<?= $row->id; ?>Label">Detail hasil investasi <br> <?= $row->investor; ?> periode <?= $row->periode; ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td class="mt-4">Periode</td>
+                                    <td>:</td>
+                                    <td><?= $row->periode; ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="mt-4">Nama Investor</td>
+                                    <td>:</td>
+                                    <td><?= $row->investor; ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="mt-4">Modal</td>
+                                    <td>:</td>
+                                    <td><?= $row->jumlah_modal; ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="mt-4">Tujuan</td>
+                                    <td>:</td>
+                                    <td><?= $row->tujuan; ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="mt-4">Tanggal Investasi</td>
+                                    <td>:</td>
+                                    <td><?= $row->tgl_investasi; ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="mt-4">Tanggal Rencana Mulai Pekerjaan</td>
+                                    <td>:</td>
+                                    <td><?= $row->tgl_mulai; ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="mt-4">Tanggal Estimasi Selesai Pekerjaan</td>
+                                    <td>:</td>
+                                    <td><?= $row->tgl_akhir; ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="mt-4">Status</td>
+                                    <td>:</td>
+                                    <td><?php
+                                                $status_text = '';
+                                                switch ($row->status) {
+                                                    case 1:
+                                                        $status_text = 'Sedang Berjalan';
+                                                        $badge_class = 'badge bg-primary';
+                                                        break;
+                                                    case 2:
+                                                        $status_text = 'Sudah Selesai';
+                                                        $badge_class = 'badge bg-secondary';
+                                                        break;
+                                                    case 3:
+                                                        $status_text = 'Akan Berjalan';
+                                                        $badge_class = 'badge bg-success';
+                                                        break;
+                                                    case 4:
+                                                        $status_text = 'Rencana';
+                                                        $badge_class = 'badge bg-danger';
+                                                        break;
+                                                    default:
+                                                        $status_text = 'Tidak Diketahui'; // Ganti dengan teks default jika nilai status tidak sesuai dengan yang diharapkan
+                                                        $badge_class = 'badge bg-secondary';
+                                                        break;
+                                                }
+                                                ?>
+                                            <span class="<?= $badge_class; ?>">
+                                                <?= $status_text; ?>
+                                            </span>
+                                            </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>
 
 <div class="modal fade text-left" id="editInvestasiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="editInvestasiModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">

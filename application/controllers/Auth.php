@@ -514,6 +514,8 @@ class Auth extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
+
+
 	/**
 	 * Redirect a user checking if is admin
 	 */

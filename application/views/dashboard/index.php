@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div class="main_content_iner ">
     <div class="container-fluid plr_30 body_white_bg pt_30">
         <div class="row justify-content-center">
@@ -31,6 +32,16 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-6">
+                <div class="white_box mb_30 min_400 ">
+                    <div class="box_header  box_header_block">
+                        <div class="main-title">
+                            <h3 class="mb-0">Perbandingan Penjualan dan Pembelian</h3>
+                        </div>
+                    </div>
+                    <canvas id="penjualanChart"></canvas>
                 </div>
             </div>
             <div class="col-lg-12 col-xl-6">
@@ -148,28 +159,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-xl-6">
-                <div class="white_box mb_30 min_400 ">
-                    <div class="box_header  box_header_block">
-                        <div class="main-title">
-                            <h3 class="mb-0">Disputed Invoices</h3>
-                        </div>
-                        <div class="legend_style mt-10">
-                            <li> <span></span> Disputed Invoices</li>
-                            <li class="inactive"> <span></span> Avarage</li>
-                        </div>
-                    </div>
-                    <div class="title_btn">
-                        <ul>
-                            <li><a class="active" href="#">All time</a></li>
-                            <li><a href="#">This year</a></li>
-                            <li><a href="#">This week</a></li>
-                            <li><a href="#">Today</a></li>
-                        </ul>
-                    </div>
-                    <canvas height="120px" id="sales-chart"></canvas>
-                </div>
-            </div>
+
             <div class="col-lg-6 col-xl-3">
                 <div class="white_box mb_30 min_400">
                     <div class="box_header  box_header_block">
@@ -212,3 +202,76 @@
         </div>
     </div>
 </div>
+
+<script>
+    var chartColors = {
+        red: 'rgb(255, 99, 132)',
+        blue: 'rgb(54, 162, 235)'
+    };
+
+    var salesAndPurchases = <?php echo json_encode($sales_and_purchases); ?>;
+
+    var labels = [];
+    var penjualanData = [];
+    var pembelianData = [];
+
+    // Mengisi array labels dan data penjualan/pembelian dari data yang diambil dari PHP
+    Object.keys(salesAndPurchases).forEach(function(key) {
+        labels.push(key);
+        penjualanData.push(salesAndPurchases[key]['total_penjualan']);
+        pembelianData.push(salesAndPurchases[key]['total_pembelian']);
+    });
+
+    var config = {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Total Penjualan',
+                backgroundColor: chartColors.red,
+                borderColor: chartColors.red,
+                data: penjualanData,
+                fill: false
+            }, {
+                label: 'Total Pembelian',
+                backgroundColor: chartColors.blue,
+                borderColor: chartColors.blue,
+                data: pembelianData,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Perbandingan Penjualan dan Pembelian'
+            },
+            // tooltips: {
+            //     mode: 'label'
+            // },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Periode'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Total'
+                    }
+                }]
+            }
+        }
+    };
+
+    var ctx = document.getElementById('penjualanChart').getContext('2d');
+    var myChart = new Chart(ctx, config);
+</script>

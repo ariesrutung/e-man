@@ -187,64 +187,86 @@
     </div>
 </div>
 
-<?php foreach ($detail as $key) : ?>
-    <div class="modal fade" id="modalDetailPembelian<?= $key->id_transaksi; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDetailPembelian<?= $key->id_transaksi; ?>Label" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+<?php if (empty($penjualan)) : ?>
+    <!-- Modal jika tabel kosong -->
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalDetailPembelian<?= $key->id_transaksi; ?>Label">Detail Penjualan hasil investasi <br> <?= $key->investor; ?> periode <?= $key->periode; ?></h5>
+                    <h5 class="modal-title">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <div class="QA_section">
-                                <div class="QA_table ">
-                                    <table class="table" id="tabelDetailPembelian">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">NO.</th>
-                                                <th scope="col">Nama Item/Barang</th>
-                                                <th scope="col">Tgl Transaksi</th>
-                                                <th scope="col">Qty</th>
-                                                <th scope="col">Harga Satuan</th>
-                                                <th scope="col">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                                $no = 1;
-                                                foreach ($key->details as $detailItem) : ?>
-                                                <tr>
-                                                    <td class="align-middle"><?= $no++; ?></td>
-                                                    <td class="align-middle"><?= $detailItem->nama_item; ?></td>
-                                                    <td class="align-middle"><?= $detailItem->tanggal_transaksi; ?></td>
-                                                    <td class="align-middle"><?= $detailItem->jumlah_item; ?> <?= $detailItem->satuan; ?></td>
-                                                    <td class="align-middle"><?= format_rupiah($detailItem->harga_satuan); ?></td>
-                                                    <td class="align-middle"><?= format_rupiah($detailItem->harga_total); ?></td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th></th>
-                                                <th colspan="4">Total Transaksi</th>
-                                                <th><?= format_rupiah($key->total_grand_total); ?></th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p>Modal body text goes here.</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="<?= base_url('penjualan/cetakPDF/') . $key->id_transaksi; ?>" class="btn btn-info btn-sm text-white">Cetak PDF</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-<?php endforeach; ?>
+<?php else : ?>
+    <!-- Modal jika tabel memiliki data -->
+    <?php foreach ($detail as $key) : ?>
+        <div class="modal fade" id="modalDetailPembelian<?= $key->id_transaksi; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDetailPembelian<?= $key->id_transaksi; ?>Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDetailPembelian<?= $key->id_transaksi; ?>Label">Detail Penjualan hasil investasi <br> <?= $key->investor; ?> periode <?= $key->periode; ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="QA_section">
+                                    <div class="QA_table ">
+                                        <table class="table" id="tabelDetailPembelian">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">NO.</th>
+                                                    <th scope="col">Nama Item/Barang</th>
+                                                    <th scope="col">Tgl Transaksi</th>
+                                                    <th scope="col">Qty</th>
+                                                    <th scope="col">Harga Satuan</th>
+                                                    <th scope="col">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                        $no = 1;
+                                                        foreach ($key->details as $detailItem) : ?>
+                                                    <tr>
+                                                        <td class="align-middle"><?= $no++; ?></td>
+                                                        <td class="align-middle"><?= $detailItem->nama_item; ?></td>
+                                                        <td class="align-middle"><?= $detailItem->tanggal_transaksi; ?></td>
+                                                        <td class="align-middle"><?= $detailItem->jumlah_item; ?> <?= $detailItem->satuan; ?></td>
+                                                        <td class="align-middle"><?= format_rupiah($detailItem->harga_satuan); ?></td>
+                                                        <td class="align-middle"><?= format_rupiah($detailItem->harga_total); ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th></th>
+                                                    <th colspan="4">Total Transaksi</th>
+                                                    <th><?= format_rupiah($key->total_grand_total); ?></th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="<?= base_url('penjualan/cetakPDF/') . $key->id_transaksi; ?>" class="btn btn-info btn-sm text-white">Cetak PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>
 
 <?php foreach ($penjualan as $key) : ?>
     <div class="modal fade" id="hapusData<?= $key->id_transaksi; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="hapusData<?= $key->id_transaksi; ?>Label" aria-hidden="true">

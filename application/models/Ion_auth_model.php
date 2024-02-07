@@ -844,6 +844,7 @@ class Ion_auth_model extends CI_Model
 		return (isset($id)) ? $id : FALSE;
 	}
 
+
 	/**
 	 * login
 	 *

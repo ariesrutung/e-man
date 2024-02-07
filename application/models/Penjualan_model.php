@@ -57,6 +57,15 @@ class Penjualan_model extends CI_Model
         return $query->row()->total_modal;
     }
 
+    public function get_total_penjualan_by_period($period)
+    {
+        $this->db->select_sum('jumlah_modal', 'total_modal');
+        $this->db->where('periode', $period);
+        $query = $this->db->get('penjualan');
+
+        return $query->row()->total_modal;
+    }
+
     public function get_data_investor()
     {
         $this->db->select('investor, GROUP_CONCAT(DISTINCT periode) AS periode');
