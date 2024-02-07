@@ -44,25 +44,15 @@
                     <canvas id="penjualanChart"></canvas>
                 </div>
             </div>
+
             <div class="col-lg-12 col-xl-6">
                 <div class="white_box mb_30 min_430">
                     <div class="box_header  box_header_block ">
                         <div class="main-title">
-                            <h3 class="mb-0">AP and AR Balance</h3>
-                            <span>Avg. $5,309</span>
-                        </div>
-                        <div class="box_select d-flex">
-                            <select class="nice_Select2 mr_5">
-                                <option value="1">Monthly</option>
-                                <option value="1">Monthly</option>
-                            </select>
-                            <select class="nice_Select2 ">
-                                <option value="1">Last Year</option>
-                                <option value="1">this Year</option>
-                            </select>
+                            <h3 class="mb-0">Total Belanja & Penjualan Per Tahun</h3>
                         </div>
                     </div>
-                    <div id="bar_active"></div>
+                    <canvas id="myChart"></canvas>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3 ">
@@ -274,4 +264,57 @@
 
     var ctx = document.getElementById('penjualanChart').getContext('2d');
     var myChart = new Chart(ctx, config);
+</script>
+
+<script>
+    var tahun = <?php echo json_encode($tahun); ?>;
+    var totalPenjualan = <?php echo json_encode($total_penjualan); ?>;
+    var totalBelanja = <?php echo json_encode($total_belanja); ?>;
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: tahun,
+            datasets: [{
+                label: 'Total Penjualan',
+                data: totalPenjualan,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Total Belanja',
+                data: totalBelanja,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Tahun'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Total'
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: false
+                }
+            },
+            // Mengatur lebar relatif bar
+            indexAxis: 'y',
+            barPercentage: 0.8, // 80% dari lebar kanvas
+            categoryPercentage: 0.5 // 50% dari lebar kanvas
+        }
+    });
 </script>

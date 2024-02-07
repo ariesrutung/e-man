@@ -66,6 +66,15 @@ class Penjualan_model extends CI_Model
         return $query->row()->total_modal;
     }
 
+    public function get_total_penjualan_per_year()
+    {
+        $this->db->select('YEAR(tanggal_transaksi) AS tahun, SUM(jumlah_modal) AS total_penjualan');
+        $this->db->from('penjualan');
+        $this->db->group_by('YEAR(tanggal_transaksi)');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function get_data_investor()
     {
         $this->db->select('investor, GROUP_CONCAT(DISTINCT periode) AS periode');

@@ -179,6 +179,15 @@ class Belanja_model extends CI_Model
         return $query->row()->total_modal;
     }
 
+    public function get_total_belanja_per_year()
+    {
+        $this->db->select('YEAR(tanggal_transaksi) AS tahun, SUM(harga_total) AS total_belanja');
+        $this->db->from('belanja');
+        $this->db->group_by('YEAR(tanggal_transaksi)');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function get_sales_and_purchases_data()
     {
         $this->db->select('periode');
