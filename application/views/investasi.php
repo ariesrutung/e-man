@@ -208,6 +208,12 @@
                                 <input type="date" class="form-control" name="tgl_akhir" required>
                             </div>
                         </div>
+                        <div class="col-lg-6 mt-3">
+                            <div class="form-group">
+                                <label for="bukti">Bukti Investasi:</label>
+                                <input class="form-control" type="file" name="bukti" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -250,79 +256,98 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td class="mt-4">Periode</td>
-                                    <td>:</td>
-                                    <td><?= $row->periode; ?></td>
-                                </tr>
-                                <tr>
-                                    <td class="mt-4">Nama Investor</td>
-                                    <td>:</td>
-                                    <td><?= $row->investor; ?></td>
-                                </tr>
-                                <tr>
-                                    <td class="mt-4">Modal</td>
-                                    <td>:</td>
-                                    <td><?= $row->jumlah_modal; ?></td>
-                                </tr>
-                                <tr>
-                                    <td class="mt-4">Tujuan</td>
-                                    <td>:</td>
-                                    <td><?= $row->tujuan; ?></td>
-                                </tr>
-                                <tr>
-                                    <td class="mt-4">Tanggal Investasi</td>
-                                    <td>:</td>
-                                    <td><?= $row->tgl_investasi; ?></td>
-                                </tr>
-                                <tr>
-                                    <td class="mt-4">Tanggal Rencana Mulai Pekerjaan</td>
-                                    <td>:</td>
-                                    <td><?= $row->tgl_mulai; ?></td>
-                                </tr>
-                                <tr>
-                                    <td class="mt-4">Tanggal Estimasi Selesai Pekerjaan</td>
-                                    <td>:</td>
-                                    <td><?= $row->tgl_akhir; ?></td>
-                                </tr>
-                                <tr>
-                                    <td class="mt-4">Status</td>
-                                    <td>:</td>
-                                    <td><?php
-                                                $status_text = '';
-                                                switch ($row->status) {
-                                                    case 1:
-                                                        $status_text = 'Sedang Berjalan';
-                                                        $badge_class = 'badge bg-primary';
-                                                        break;
-                                                    case 2:
-                                                        $status_text = 'Sudah Selesai';
-                                                        $badge_class = 'badge bg-secondary';
-                                                        break;
-                                                    case 3:
-                                                        $status_text = 'Akan Berjalan';
-                                                        $badge_class = 'badge bg-success';
-                                                        break;
-                                                    case 4:
-                                                        $status_text = 'Rencana';
-                                                        $badge_class = 'badge bg-danger';
-                                                        break;
-                                                    default:
-                                                        $status_text = 'Tidak Diketahui'; // Ganti dengan teks default jika nilai status tidak sesuai dengan yang diharapkan
-                                                        $badge_class = 'badge bg-secondary';
-                                                        break;
-                                                }
-                                                ?>
-                                            <span class="<?= $badge_class; ?>">
-                                                <?= $status_text; ?>
-                                            </span>
-                                            </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <ul class="nav nav-tabs" id="myTab<?= $row->id; ?>" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="data-investasi-tab<?= $row->id; ?>" data-bs-toggle="tab" data-bs-target="#data-investasi<?= $row->id; ?>" type="button" role="tab" aria-controls="data-investasi<?= $row->id; ?>" aria-selected="true">Data Investasi</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="bukti-investasi-tab<?= $row->id; ?>" data-bs-toggle="tab" data-bs-target="#bukti-investasi<?= $row->id; ?>" type="button" role="tab" aria-controls="bukti-investasi<?= $row->id; ?>" aria-selected="false">Bukti Investasi</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent<?= $row->id; ?>">
+                            <div class="tab-pane fade show active" id="data-investasi<?= $row->id; ?>" role="tabpanel" aria-labelledby="data-investasi-tab<?= $row->id; ?>">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td class="mt-4">Periode</td>
+                                            <td>:</td>
+                                            <td><?= $row->periode; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mt-4">Nama Investor</td>
+                                            <td>:</td>
+                                            <td><?= $row->investor; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mt-4">Modal</td>
+                                            <td>:</td>
+                                            <td><?= $row->jumlah_modal; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mt-4">Tujuan</td>
+                                            <td>:</td>
+                                            <td><?= $row->tujuan; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mt-4">Tanggal Investasi</td>
+                                            <td>:</td>
+                                            <td><?= $row->tgl_investasi; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mt-4">Tanggal Rencana Mulai Pekerjaan</td>
+                                            <td>:</td>
+                                            <td><?= $row->tgl_mulai; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mt-4">Tanggal Estimasi Selesai Pekerjaan</td>
+                                            <td>:</td>
+                                            <td><?= $row->tgl_akhir; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mt-4">Status</td>
+                                            <td>:</td>
+                                            <td>
+                                                <?php
+                                                        $status_text = '';
+                                                        switch ($row->status) {
+                                                            case 1:
+                                                                $status_text = 'Sedang Berjalan';
+                                                                $badge_class = 'badge bg-primary';
+                                                                break;
+                                                            case 2:
+                                                                $status_text = 'Sudah Selesai';
+                                                                $badge_class = 'badge bg-secondary';
+                                                                break;
+                                                            case 3:
+                                                                $status_text = 'Akan Berjalan';
+                                                                $badge_class = 'badge bg-success';
+                                                                break;
+                                                            case 4:
+                                                                $status_text = 'Rencana';
+                                                                $badge_class = 'badge bg-danger';
+                                                                break;
+                                                            default:
+                                                                $status_text = 'Tidak Diketahui'; // Ganti dengan teks default jika nilai status tidak sesuai dengan yang diharapkan
+                                                                $badge_class = 'badge bg-secondary';
+                                                                break;
+                                                        }
+                                                        ?>
+                                                    <span class="<?= $badge_class; ?>">
+                                                        <?= $status_text; ?>
+                                                    </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="bukti-investasi<?= $row->id; ?>" role="tabpanel" aria-labelledby="bukti-investasi-tab<?= $row->id; ?>">
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <img class="w-25" src="<?= base_url('assets/bukti_investasi/' . $row->bukti) ?>" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -332,6 +357,7 @@
         </div>
     <?php endforeach; ?>
 <?php endif; ?>
+
 
 <div class="modal fade text-left" id="editInvestasiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="editInvestasiModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -406,11 +432,16 @@
         $('#addInvestasiForm').submit(function(e) {
             e.preventDefault();
 
+            // Membuat objek FormData
+            var formData = new FormData(this);
+
             // Menggunakan AJAX untuk pengiriman form
             $.ajax({
                 type: 'POST', // Pastikan metodenya adalah POST
                 url: '<?= base_url(); ?>investasi/unggah_data_investasi',
-                data: $(this).serialize(),
+                data: formData,
+                processData: false, // Memproses data tidak diperlukan karena menggunakan FormData
+                contentType: false, // Konten tipe juga tidak perlu ditetapkan
                 success: function(response) {
                     console.log(response);
                     $('#addInvestasiModal').modal('hide');
@@ -421,6 +452,7 @@
                 }
             });
         });
+
 
         $('.delete-btn').click(function() {
             var id = $(this).data('id');

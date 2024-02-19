@@ -55,6 +55,17 @@
                     <canvas id="myChart"></canvas>
                 </div>
             </div>
+            <div class="col-lg-12 col-xl-6">
+                <div class="white_box mb_30 min_430">
+                    <div class="box_header  box_header_block ">
+                        <div class="main-title">
+                            <h3 class="mb-0">5 Top Ivestor</h3>
+                        </div>
+                    </div>
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
             <div class="col-md-6 col-lg-6 col-xl-3 ">
                 <div class="white_box mb_30 min_430">
                     <div class="box_header  box_header_block">
